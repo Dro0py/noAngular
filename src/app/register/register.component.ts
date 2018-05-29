@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,14 +8,16 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  auth : AuthService;
-  constructor(auth : AuthService, private router: Router) {
+  auth: AuthService;
+
+  constructor(auth: AuthService, private router: Router) {
     this.auth = auth;
   }
 
   ngOnInit() {
   }
-  registerUser(event){
+
+  registerUser(event) {
     event.preventDefault();
     const target = event.target;
     const errors = [];
@@ -23,18 +25,20 @@ export class RegisterComponent implements OnInit {
     const password = target.password.value;
     const cpassword = target.cpassword.value;
 
-    if(password != cpassword){
-      errors.push("Passwords do not match");
+    if (password !== cpassword) {
+      console.log('mdp pas bon');
+      errors.push('Passwords do not match');
     }
 
-    if(errors.length < 0){
+    if (errors.length === 0) {
       this.auth.registerUser(username, password).subscribe(data => {
-        console.log(data)
-        if(data.success){
-          this.router.navigate(['dashboard'])
+        console.log(data);
+        if (data.success) {
+          this.router.navigate(['dashboard']);
         }
       });
     }
+    console.log(username, password);
   }
 
 }

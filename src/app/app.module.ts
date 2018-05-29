@@ -33,7 +33,8 @@ import { RegisterComponent } from './register/register.component';
       {
         path: 'dashboard',
         component: DashboardComponent
-      },{
+      },
+      {
         path: 'register',
         component: RegisterComponent
       },
